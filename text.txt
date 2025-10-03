@@ -10,8 +10,8 @@ ssh-keygen -t rsa -b 4096 -f CA
 3.1 add the CA.pub certificate
     sudo cp CA.pub /etc/ssh/CA.pub
 3.2 change permisson to make sure root is owned by root (user, group)
-    sudo chown root:root /etc/ssh/ca_user.pub
-    sudo chmod 644 /etc/ssh/ca_user.pub
+    sudo chown root:root /etc/ssh/CA.pub
+    sudo chmod 644 /etc/ssh/CA.pub
 
 4 eddit the SSH configuration 
     sudo nano /etc/ssh/sshd_config
@@ -28,6 +28,10 @@ ssh-keygen -t rsa -b 4096 -f CA
     the point is to generate with experation date NOTE CA JOB TO SET THE experation date
 
 7 now it should work 
+    show the result
 
-8 future set it up to expose to internet 
+8 future 
+    set it up to expose to internet 
+    automate the certificate rollout
+    
     
