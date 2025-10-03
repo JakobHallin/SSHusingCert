@@ -48,7 +48,9 @@ we get user-cert.pub that is signed by the CA
     ssh-keygen -s CA -I user-cert -n pi -V +1h user.pub
     important is to use -n to the right user other wise it wont work
     show the result
-    ![Uploading Screenshot from 2025-10-03 15-48-44.png…]()
+    <img width="680" height="117" alt="Screenshot from 2025-10-03 15-48-44" src="https://github.com/user-attachments/assets/18606b82-e9ba-4ac0-91ca-4b1fe212c21f" />
+
+    
 
 
 8 future 
