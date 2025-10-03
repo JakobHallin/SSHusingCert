@@ -5,6 +5,11 @@ SSH using SSH cert
 ssh-keygen -t rsa -b 4096 -f CA
 
 2 now I have the CA I need to add it to the Client/target i want to use remote acces with certificate to acces
+    I will use SSH with just password for now on local network
+2.1 place where i will place the CA public certificate
+    mkdir SSHtest 
+    scp -r ./CA.pub pi@192.168.1.12:/home/pi/SSHtest 
+    now i have it inside the raspberrypi
 
 3 inside the raspberry i will need to changes
 3.1 add the CA.pub certificate
@@ -21,13 +26,26 @@ ssh-keygen -t rsa -b 4096 -f CA
     PasswordAuthentication no
     PubkeyAuthentication yes
     PermitRootLogin no
+
+    remove UsePAM yes
+
 5 restart ssh
     sudo systemctl restart ssh
+6 now we cant loging using the password we  get  Permission denied (publickey).
 
 6 now with the CA we should be create certs to login and use the raspberry pi
     the point is to generate with experation date NOTE CA JOB TO SET THE experation date
+    ssh-keygen -t rsa -b 4096 -f ./user crate user cert
+
+Sign it
+ssh-keygen -s CA -I user -n user -V +1h user
+we get user-cert.pub that is signed by the CA
+
+
 
 7 now it should work 
+    ssh-keygen -s CA -I user-cert -n pi -V +1h user.pub
+    important is to use -n to the right user other wise it wont work
     show the result
 
 8 future 
