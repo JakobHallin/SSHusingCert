@@ -1,11 +1,16 @@
 SSH using SSH cert
 //raspberry pi
+
 1 create the CA for the ssh SSH dont use the x.509 certificate  but use the SSH certificate
+
 ssh-keygen -t rsa -b 4096 -f CA
 
 2 now I have the CA I need to add it to the Client/target i want to use remote acces with certificate to acces
-    I will use SSH with just password for now on local network
+
+I will use SSH with just password for now on local network
+
 2.1 place where i will place the CA public certificate
+
     mkdir SSHtest 
     scp -r ./CA.pub pi@192.168.1.12:/home/pi/SSHtest 
     now i have it inside the raspberrypi
@@ -17,7 +22,8 @@ ssh-keygen -t rsa -b 4096 -f CA
     sudo chown root:root /etc/ssh/CA.pub
     sudo chmod 644 /etc/ssh/CA.pub
 
-4 eddit the SSH configuration 
+4 eddit the SSH configuration
+
     sudo nano /etc/ssh/sshd_config
     inside change
     TrustedUserCAKeys /etc/ssh/CA.pub
@@ -47,8 +53,8 @@ we get user-cert.pub that is signed by the CA
 7 now it should work 
     ssh-keygen -s CA -I user-cert -n pi -V +1h user.pub
     important is to use -n to the right user other wise it wont work
-    show the result
-    <img width="680" height="117" alt="Screenshot from 2025-10-03 15-48-44" src="https://github.com/user-attachments/assets/18606b82-e9ba-4ac0-91ca-4b1fe212c21f" />
+
+<img width="680" height="117" alt="Screenshot from 2025-10-03 15-48-44" src="https://github.com/user-attachments/assets/18606b82-e9ba-4ac0-91ca-4b1fe212c21f" />
 
     
 
